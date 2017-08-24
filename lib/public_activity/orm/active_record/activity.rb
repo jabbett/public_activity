@@ -9,7 +9,7 @@ module PublicActivity
         self.abstract_class = true
 
         # Define polymorphic association to the parent
-        belongs_to :trackable, :polymorphic => true
+        belongs_to :trackable, -> { with_deleted }, :polymorphic => true
         with_options(::ActiveRecord::VERSION::MAJOR >= 5 ? { :required => false } : { }) do
           # Define ownership to a resource responsible for this activity
           belongs_to :owner, :polymorphic => true
